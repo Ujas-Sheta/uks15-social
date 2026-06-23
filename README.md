@@ -1,235 +1,236 @@
 # Uks15 Social
 
-Uks15 Social is a full-stack social networking platform inspired by familiar social media patterns, but built with original branding, a green visual system, and custom UI. It mixes a Facebook-style feed and navigation shell with Instagram-style image-first stories, profile presentation, and post cards.
+A full-stack social networking platform built with React, Node.js, Express, and MySQL. Combines a Facebook-style feed and navigation shell with Instagram-style stories, image-first posts, and a clean green brand system.
 
-This project is designed as a portfolio-ready React, Node.js, Express, and MySQL application.
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Netlify-00C7B7?style=for-the-badge&logo=netlify)](https://uks15-social.netlify.app)
+[![GitHub](https://img.shields.io/badge/GitHub-Ujas--Sheta-181717?style=for-the-badge&logo=github)](https://github.com/Ujas-Sheta/uks15-social)
+
+---
+
+## Screenshots
+
+| Dark Mode Feed | Light Mode |
+|---|---|
+| ![Dark Feed](ShowCase/dark.PNG) | ![Light Feed](ShowCase/Light.PNG) |
+
+| Profile Page | Login |
+|---|---|
+| ![Profile](ShowCase/Profile.PNG) | ![Login](ShowCase/Login.PNG) |
+
+| Likes & Comments | Edit Profile |
+|---|---|
+| ![Likes Comments](ShowCase/Likes_Comments.PNG) | ![Edit Profile](ShowCase/Edit_Profile.PNG) |
+
+| Register | Manage Posts |
+|---|---|
+| ![Register](ShowCase/register.PNG) | ![Manage Posts](ShowCase/manage_post.PNG) |
+
+---
 
 ## Features
 
-- User registration and login
-- JWT cookie authentication
-- Green Uks15 brand system with light and dark mode
-- Responsive three-column social app layout
-- Search users from the header
-- Follow and unfollow users
-- Feed posts from the current user and followed users
-- Create text and image posts
+**Authentication & Accounts**
+- User registration and login with JWT cookie authentication
+- Private accounts with follow request and accept/reject flow
+- Edit profile — name, bio, website, profile picture, cover photo
+- Delete account — permanently removes all posts, messages, and data
+- Light and dark mode toggle
+
+**Feed & Posts**
+- Home feed showing your posts, followed users, and public accounts
+- Create text posts, image posts, and video posts (MP4, WebM, OGG, MOV up to 50 MB)
 - Image preview before posting
-- Story strip with story uploads
-- Short video uploads for Clips
-- Like/react to posts
-- Multiple reaction types: Like, Love, Haha, Wow, and Sad
+- Multiple reaction types — Like, Love, Haha, Wow, Sad
 - Comment on posts
-- Profile page with cover photo, avatar, stats, tabs, and follow action
-- Notification system for follows, reactions, and comments
-- Private-account follow requests with accept/reject
-- Clickable notifications that route to profiles, messages, or feed
-- Connections page with pending requests and message links
-- Basic friend/connection messaging
-- Full-screen story viewer
-- Repost action that creates a repost in the feed
-- Saved posts page with private saved collection
-- Communities, Uks15 Market, Clips, and Events pages with create forms
-- Search and filter toolbar for Communities, Market, Clips, and Events
-- Clips page renders playable video cards with browser video controls
-- Prepared routes for Connections, Communities, Market, Clips, Events, Saved, and Settings
+- Repost to your feed
+- Save posts to a private collection
+- Delete your own posts
+- Paginated feed — 20 posts per page
+
+**Social**
+- Follow and unfollow users
+- Follow requests for private accounts
+- Connections page with pending requests
+- Search users from the header
+- Messaging between connected users
+- Notification system for follows, reactions, comments, and messages
+- Clickable notifications routing to the relevant profile or post
+- Full-screen story viewer with auto-advance
+
+**Discovery**
+- Communities — create and browse focused groups
+- Uks15 Market — local marketplace listings
+- Clips — short video feed with playable video cards
+- Events — create and discover upcoming events
+- Search and filter toolbar on all discovery pages
+
+---
 
 ## Tech Stack
 
-Frontend:
-- React.js with Vite
-- React Router DOM
-- React Query
-- Axios
-- Tailwind CSS and custom CSS variables
-- Material UI icons
+**Frontend**
 
-Backend:
-- Node.js
-- Express.js
-- MySQL with mysql2
-- JWT
-- bcryptjs
-- multer
-- cookie-parser
-- dotenv
+![React](https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat&logo=vite&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/Tailwind-06B6D4?style=flat&logo=tailwindcss&logoColor=white)
+![React Query](https://img.shields.io/badge/React%20Query-FF4154?style=flat&logo=reactquery&logoColor=white)
+![Axios](https://img.shields.io/badge/Axios-5A29E4?style=flat&logo=axios&logoColor=white)
+![MUI](https://img.shields.io/badge/MUI%20Icons-007FFF?style=flat&logo=mui&logoColor=white)
+
+- React Router DOM for client-side routing
+- TanStack React Query for server state and caching
+- Custom CSS variables for green brand system and theming
+
+**Backend**
+
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat&logo=node.js&logoColor=white)
+![Express](https://img.shields.io/badge/Express-000000?style=flat&logo=express&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat&logo=mysql&logoColor=white)
+![JWT](https://img.shields.io/badge/JWT-000000?style=flat&logo=jsonwebtokens&logoColor=white)
+
+- mysql2 with connection pooling
+- bcryptjs for password hashing
+- multer for image and video uploads
+- cookie-parser and dotenv
+- In-memory rate limiting on auth routes
+
+---
 
 ## Project Structure
 
-```text
-API/
-  controllers/
-  routes/
-  migrations/
-  connect.js
-  index.js
-
-frontend/
-  src/
-    components/
-    context/
-    pages/
-    App.jsx
-    index.css
-
-mydevify_social.sql
+```
+uks15-social/
+├── API/
+│   ├── controllers/       # auth, posts, users, likes, comments,
+│   │                      # relationships, messages, notifications,
+│   │                      # stories, saved, features
+│   ├── routes/            # Express route definitions
+│   ├── migrations/        # SQL migration files (001–005)
+│   ├── scripts/           # Seed scripts
+│   ├── connect.js         # MySQL connection pool
+│   └── index.js           # Express app entry point
+│
+├── frontend/
+│   └── src/
+│       ├── components/    # Navbar, Leftbar, Rightbar, Post, Share,
+│       │                  # Stories, Comments, Update, etc.
+│       ├── context/       # AuthContext, ToastContext
+│       ├── pages/         # Home, Profile, Login, Register, Messages,
+│       │                  # Notifications, Connections, Saved, Settings
+│       ├── utils/         # upload.js, notificationLink.js
+│       └── App.jsx
+│
+├── ShowCase/              # Screenshots
+└── mydevify_social.sql    # Base database schema
 ```
 
-## Setup
+---
 
-1. Create the MySQL database.
+## Local Setup
 
-```sql
-CREATE DATABASE mydevify_social;
-```
-
-2. Import the base schema and seed data.
+### 1. Clone the repo
 
 ```bash
+git clone https://github.com/Ujas-Sheta/uks15-social.git
+cd uks15-social
+```
+
+### 2. Set up the database
+
+```bash
+mysql -u root -p -e "CREATE DATABASE mydevify_social;"
 mysql -u root -p mydevify_social < mydevify_social.sql
-```
-
-3. Import the notifications migration.
-
-```bash
 mysql -u root -p mydevify_social < API/migrations/001_notifications.sql
-```
-
-4. Import the private-account migration.
-
-```bash
 mysql -u root -p mydevify_social < API/migrations/002_private_accounts.sql
-```
-
-5. Import the social feature migration.
-
-```bash
 mysql -u root -p mydevify_social < API/migrations/003_social_features.sql
-```
-
-6. Import the feature media type migration for video clips.
-
-```bash
 mysql -u root -p mydevify_social < API/migrations/004_feature_media_type.sql
-```
-
-7. Import the saved posts and reaction type migration.
-
-```bash
 mysql -u root -p mydevify_social < API/migrations/005_saved_posts_reactions.sql
 ```
 
-8. Install backend dependencies.
+### 3. Backend
 
 ```bash
 cd API
 npm install
+copy .env.example .env   # fill in your values
+npm run seed             # seed demo users and posts
+npm start                # runs on http://localhost:8800
 ```
 
-9. Create `API/.env` from `API/.env.example`.
+### 4. Frontend
 
 ```bash
-copy .env.example .env
-```
-
-10. Seed demo users, follows, posts, marketplace items, clips, events, communities, local demo images, and one real demo MP4 clip.
-
-```bash
-npm run seed
-```
-
-Demo seed user password:
-
-```text
-pass123456
-```
-
-11. Start the backend.
-
-```bash
-npm start
-```
-
-12. Install frontend dependencies.
-
-```bash
-cd ../frontend
+cd frontend
 npm install
+copy .env.example .env   # fill in your values
+npm run dev              # runs on http://localhost:5173
 ```
 
-13. Create `frontend/.env` from `frontend/.env.example`.
-
-```bash
-copy .env.example .env
-```
-
-14. Start the frontend.
-
-```bash
-npm run dev
-```
-
-Open:
-
-```text
-http://localhost:5173
-```
+---
 
 ## Demo Login
 
-The imported SQL includes sample users.
-
-```text
+```
 Username: xLoy
 Password: 123456789
 ```
 
-You can also create a new account from the register page.
+Or register a new account from the register page.
+
+---
 
 ## Environment Variables
 
-Backend:
+**`API/.env`**
 
-```text
+```env
 PORT=8800
 CLIENT_URL=http://localhost:5173
 DB_HOST=localhost
+DB_PORT=3306
 DB_USER=root
-DB_PASSWORD=root
+DB_PASSWORD=your_password
 DB_NAME=mydevify_social
-JWT_SECRET=secretkey
+JWT_SECRET=your_secret_key_here
+# DB_SSL=true   ← uncomment when using a cloud database
 ```
 
-Frontend:
+**`frontend/.env`**
 
-```text
+```env
 VITE_API_URL=http://localhost:8800/api
+VITE_UPLOAD_URL=http://localhost:5173
 ```
 
-## Notes
+---
 
-- This is an original Uks15-branded social app. It does not use Facebook or Instagram branding, logos, icons, assets, or trademarked copy.
-- Some navigation sections are prepared as milestone pages so the app can expand cleanly.
-- The notification system is implemented for follow, like, and comment events.
-- Private accounts hide posts, photos, about details, and connections from non-followers.
-- `npm run seed` adds demo users and web-sourced local demo images so the feed is not empty for new accounts.
-- Clip uploads support common short video formats such as MP4, WebM, OGG, and MOV up to 50 MB.
-
-## Useful Scripts
-
-Backend:
+## Seed Scripts
 
 ```bash
-npm start
+# Seed demo users and content
+npm run seed
+
+# Seed 5 real-world celebrity accounts with posts, market, events, clips and stories
+npm run seed:celebs
+
+# View all database tables and row counts
+node scripts/show-db.js
 ```
 
-Frontend:
+---
 
-```bash
-npm run dev
-npm run build
-npm run lint
-```
+## Deployment
+
+| Service | Purpose |
+|---|---|
+| [Netlify](https://netlify.com) | Frontend (React/Vite) |
+| [Render](https://render.com) | Backend (Node/Express) |
+| [Aiven](https://aiven.io) | MySQL Database |
+
+Set `VITE_API_URL` and `VITE_UPLOAD_URL` on Netlify to point to your Render backend URL.
+Set `DB_SSL=true` on Render when connecting to Aiven or any cloud MySQL.
+
+---
 
 ## License
 
