@@ -14,6 +14,7 @@ import featureRoutes from "./routes/features.js";
 import messageRoutes from "./routes/messages.js";
 import savedRoutes from "./routes/saved.js";
 import multer from "multer";
+import ImageKit from "imagekit";
 const app = express();
 const port = process.env.PORT || 8800;
 const clientUrls = (process.env.CLIENT_URL || "http://localhost:5173,http://localhost:5174,http://127.0.0.1:5173,http://127.0.0.1:5174")
@@ -44,15 +45,11 @@ app.use(cookieParser());
 
 
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, '../frontend/public/uploads/posts')
-  },
-  filename: function (req, file, cb) {
-    // Keep the original extension so uploaded images and videos render correctly.
-    cb(null, Date.now() + file.originalname);
-  }
-})
+const imagekit = new ImageKit({
+  publicKey: process.env.IMAGEKIT_PUBLIC_KEY,
+  privateKey: process.env.IMAGEKIT_PRIVATE_KEY,
+  urlEndpoint: process.env.IMAGEKIT_URL_ENDPOINT,
+});
 
 const allowedUploadTypes = [
   "image/jpeg",
@@ -66,7 +63,7 @@ const allowedUploadTypes = [
 ];
 
 const upload = multer({
-  storage,
+  storage: multer.memoryStorage(),
   limits: { fileSize: 50 * 1024 * 1024 },
   fileFilter: (req, file, cb) => {
     if (!allowedUploadTypes.includes(file.mimetype)) {
@@ -77,14 +74,23 @@ const upload = multer({
   },
 });
 
-
-app.post("/api/upload",upload.single("file"), (req,res)=>{
+app.post("/api/upload", upload.single("file"), async (req, res) => {
   const file = req.file;
   if (!file) return res.status(400).json("No file uploaded.");
-  res.status(200).json({
-    filename: file.filename,
-    mediaType: file.mimetype.startsWith("video/") ? "video" : "image",
-  })
+  try {
+    const result = await imagekit.upload({
+      file: file.buffer,
+      fileName: Date.now() + "_" + file.originalname,
+      folder: "/uploads/posts",
+    });
+    res.status(200).json({
+      filename: result.url,
+      mediaType: file.mimetype.startsWith("video/") ? "video" : "image",
+    });
+  } catch (err) {
+    console.error("ImageKit upload error:", err);
+    res.status(500).json("File upload failed.");
+  }
 });
 
 app.use("/api/auth", authRoutes);
