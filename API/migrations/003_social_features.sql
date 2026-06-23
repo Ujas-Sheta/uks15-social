@@ -1,3 +1,4 @@
+USE defaultdb;
 CREATE TABLE IF NOT EXISTS `friend_requests` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `senderId` int(11) NOT NULL,

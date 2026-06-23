@@ -174,7 +174,7 @@ ALTER TABLE `likes`
 -- Indexes for table `posts`
 --
 ALTER TABLE `posts`
-  ADD PRIMARY KEY (`id`,`userid`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `userid` (`userid`);
 
 --

@@ -1,3 +1,4 @@
+USE defaultdb;
 CREATE TABLE IF NOT EXISTS `notifications` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `receiverId` int(11) NOT NULL,

@@ -1,3 +1,4 @@
+USE defaultdb;
 ALTER TABLE `likes`
   ADD COLUMN `reactionType` varchar(24) NOT NULL DEFAULT 'like';
 
