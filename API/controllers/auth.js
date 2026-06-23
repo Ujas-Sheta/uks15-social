@@ -3,7 +3,11 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 const JWT_SECRET = process.env.JWT_SECRET || "secretkey";
-const COOKIE_OPTIONS = { httpOnly: true };
+const isProduction = process.env.NODE_ENV === "production" || process.env.CLIENT_URL?.startsWith("https");
+const COOKIE_OPTIONS = {
+  httpOnly: true,
+  ...(isProduction && { sameSite: "none", secure: true }),
+};
 
 export const register = (req, res) => {
   const { username, email, password, name } = req.body;
