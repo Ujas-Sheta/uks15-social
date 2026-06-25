@@ -71,6 +71,7 @@ body::before {
     linear-gradient(120deg, rgba(22, 163, 74, 0.08), transparent 36%),
     linear-gradient(240deg, rgba(20, 184, 166, 0.08), transparent 34%),
     var(--bg);
+
 }
 
 a {
@@ -91,11 +92,13 @@ button {
     transform 180ms ease,
     box-shadow 180ms ease,
     border-color 180ms ease;
+
 }
 
 .uks-card:hover {
   border-color: color-mix(in srgb, var(--primary) 28%, var(--border));
   box-shadow: var(--shadow-lifted);
+
 }
 
 .uks-ambient-scene {
@@ -105,12 +108,14 @@ button {
   overflow: hidden;
   pointer-events: none;
   opacity: 0.55;
+
 }
 
 .uks-ambient-scene canvas {
   width: 100%;
   height: 100%;
   display: block;
+
 }
 
 .uks-header {
@@ -125,6 +130,7 @@ button {
   padding: 0 16px;
   background: var(--card-bg);
   border-bottom: 1px solid var(--border);
+  
 }
 
 .uks-header__left,
