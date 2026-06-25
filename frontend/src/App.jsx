@@ -37,6 +37,7 @@ function App() {
     const error = useRouteError();
     console.error(error);
 
+
     return (
       <main className="uks-auth-page">
         <section className="uks-auth-copy">
@@ -56,6 +57,7 @@ function App() {
       </main>
     );
   };
+  
 
   const Layout = () => {
     return (
