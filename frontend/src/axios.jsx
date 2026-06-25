@@ -5,6 +5,7 @@ export const makeRequest = axios.create({
     withCredentials: true,
 })
 
+
 makeRequest.interceptors.response.use(
   (response) => response,
   (error) => {
