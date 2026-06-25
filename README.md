@@ -5,7 +5,7 @@ A full-stack social networking platform built with React, Node.js, Express, and 
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-Netlify-00C7B7?style=for-the-badge&logo=netlify)](https://uks15-social.netlify.app)
 [![GitHub](https://img.shields.io/badge/GitHub-Ujas--Sheta-181717?style=for-the-badge&logo=github)](https://github.com/Ujas-Sheta/uks15-social)
 
----
+<!-- ---
 
 ## Screenshots
 
@@ -234,4 +234,4 @@ Set `DB_SSL=true` on Render when connecting to Aiven or any cloud MySQL.
 
 ## License
 
-MIT
+MIT -->
